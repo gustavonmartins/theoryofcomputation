@@ -3,8 +3,10 @@ package fda;
 import java.util.function.BiFunction;
 
 public class Test {
-	private static FDA machine;
+	private static DeterministicFiniteStateMachine machine;
 
+	// Accepts: The set of all strings with three consecutive 0’s
+	// Alphabet:  {0, 1}
 	public static void main(String[] args) {
 		
 		machine=new I_DFA();
@@ -12,30 +14,34 @@ public class Test {
 		State s1=new I_State("A");
 		State s2=new I_State("B");
 		State s3=new I_State("C");
+		State s4=new I_State("D");
 		State serror=new I_State("Error state");
 		
 		machine.addState(s1);
 		machine.addState(s2);
 		machine.addState(s3);
+		machine.addState(s4);
+		machine.addState(serror);
 		
 		machine.setInitialState(s1);
 		
-		machine.addAcceptedState(s3);
+		machine.addAcceptedState(s4);
 		
-		BiFunction<State, String, State> f1= (st,str) -> 
+		BiFunction<State, Character, State> f1= (st,chrctr) -> 
 				{
-					if (st==s1 && str=="0") {return s2;}
-					if (st==s2 && str=="1") {return s1;}
+					if (st==s1 && chrctr=='0') {return s2;}
+						if (st==s1 && chrctr=='1') {return s1;}
+					if (st==s2 && chrctr=='0') {return s3;}
+						if (st==s2 && chrctr=='1') {return s1;}
+					if (st==s3 && chrctr=='0') {return s4;}
+						if (st==s3 && chrctr=='1') {return s1;}
+					if (st==s4) {return s4;}
 					else {return serror;}
 				};
 		machine.addTransition(f1);
 		
-		machine.readSymbol("0");
-		machine.readSymbol("1");
-		machine.readSymbol("2");
-		
-		System.out.println("Finished");
 
+		machine.readAllSymbols("1001001101010010001");
 	}
 
 }
