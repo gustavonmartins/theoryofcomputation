@@ -3,11 +3,11 @@ package fda;
 import java.util.ArrayList;
 import java.util.function.BiFunction;
 
-public class I_DFA implements FDA {
+public class I_DFA implements DeterministicFiniteStateMachine {
 	private ArrayList<State> states;
 	private State initialState;
 	private ArrayList<State> acceptedStates;
-	private BiFunction<State, String, State> function;
+	private BiFunction<State, Character, State> function;
 	
 	private State currentState;
 	
@@ -40,17 +40,31 @@ public class I_DFA implements FDA {
 	}
 
 	@Override
-	public void addTransition(BiFunction<State, String, State> function) {
+	public void addTransition(BiFunction<State, Character, State> function) {
 		this.function=function;
 		
 	}
 
 	@Override
-	public void readSymbol(String symbol) {
-		System.out.format("Old state is: %s...",currentState.getStateName());
-		System.out.format("Symbol read: %s ",symbol);
+	public void readSymbol(char symbol) {
+		System.out.format("%s -",currentState.getStateName());
+		System.out.format(" %s ->",symbol);
 		currentState=function.apply(currentState, symbol);
-		System.out.format("New state is: %s\n",currentState.getStateName());
+		System.out.format(" %s\n",currentState.getStateName());
+	}
+
+	@Override
+	public void readAllSymbols(String allSymbols) {
+		for (char cs:allSymbols.toCharArray()) {
+			readSymbol(cs);
+		}
+		if (acceptedStates.contains(currentState)) {
+			System.out.println("Accepted");
+		}
+		else {
+			System.out.println("Rejected");
+		}
+		
 	}
 
 }
