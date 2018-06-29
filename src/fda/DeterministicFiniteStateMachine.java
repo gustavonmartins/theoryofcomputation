@@ -2,13 +2,14 @@ package fda;
 
 import java.util.function.BiFunction;
 
-public interface FDA {
+public interface DeterministicFiniteStateMachine {
 	//public void setAlphabet(E alphabet);
 	public void addState(State state);
 	public void setInitialState(State state);
 	public void addAcceptedState(State state);
-	public void addTransition(BiFunction<State, String, State> function);
+	public void addTransition(BiFunction<State, Character, State> function);
 	
-	public void readSymbol(String symbol);
+	public void readSymbol(char symbol);
+	public void readAllSymbols(String allSymbols);
 
 }
