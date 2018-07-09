@@ -3,7 +3,7 @@ package fda;
 import java.util.function.BiFunction;
 
 public class Test {
-	private static DeterministicFiniteStateMachine machine;
+	private static DFA machine;
 
 	// Accepts: The set of all strings with three consecutive 0’s
 	// Alphabet:  {0, 1}
