@@ -84,6 +84,14 @@ public class I_DPDA implements DPDA<TestStackSymbols> {
 
 	@Override
 	public void readSymbol(char symbol) {
+		if (stBasics.getAcceptedStates().contains(stBasics.getCurrentState())) {
+			System.out.println(">>Accepted");
+			System.exit(1);
+		}
+		else if (stBasics.getCurrentState().getStateName()=="Error state") {
+			System.out.println(">>Rejected");
+			System.exit(1);
+		}
 		System.out.format("Processing %s\n",symbol);
 		
 		Tuple<State, ArrayList<TestStackSymbols>> fnOut;
@@ -111,12 +119,7 @@ public class I_DPDA implements DPDA<TestStackSymbols> {
 		for (char cs:allSymbols.toCharArray()) {
 			readSymbol(cs);
 		}
-		if (stBasics.getAcceptedStates().contains(stBasics.getCurrentState())) {
-			System.out.println("Accepted");
-		}
-		else {
-			System.out.println("Rejected");
-		}
+		
 		
 	}
 
