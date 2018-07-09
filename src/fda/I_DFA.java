@@ -3,7 +3,7 @@ package fda;
 import java.util.ArrayList;
 import java.util.function.BiFunction;
 
-public class I_DFA implements DeterministicFiniteStateMachine {
+public class I_DFA implements DFA {
 	private ArrayList<State> states;
 	private State initialState;
 	private ArrayList<State> acceptedStates;
@@ -28,15 +28,24 @@ public class I_DFA implements DeterministicFiniteStateMachine {
 
 	@Override
 	public void setInitialState(State state) {
-		initialState=state;
-		currentState=initialState;
-		
+		if (!states.contains(state)) {
+			System.out.println("Initial state cannot be set for it doesnt belong to machine");
+		}
+		else {
+			initialState=state;
+			currentState=initialState;
+		}
 	}
 
 	@Override
 	public void addAcceptedState(State state) {
-		acceptedStates.add(state);
 		
+		if (!states.contains(state)) {
+			throw new RuntimeException("Accepted state cannot be set for it doesnt belong to machine");
+		}
+		else {
+			acceptedStates.add(state);
+		}
 	}
 
 	@Override
