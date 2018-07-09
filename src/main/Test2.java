@@ -34,37 +34,37 @@ public class Test2 {
 		
 		machine.addAcceptedState(s3);
 		
-		TriFunction<State, Character, TestStackSymbols, Tuple<State, ArrayList<TestStackSymbols>>> f1= (st,chrctr,lastSymb) -> 
+		TriFunction<State, Character, TestStackSymbols, Tuple<State, ArrayList<TestStackSymbols>>> f1= (state,character,stackSymbol) -> 
 				{
 					ArrayList<TestStackSymbols> newSymbols=new ArrayList<TestStackSymbols>();
 					Tuple<State, ArrayList<TestStackSymbols>> output = new Tuple<State, ArrayList<TestStackSymbols>>();
 					State newState=null;
-					if (st==s1 && chrctr=='a') 
+					if (state==s1 && character=='a') 
 						{
-						newSymbols.add(lastSymb);
+						newSymbols.add(stackSymbol);
 						newSymbols.add(TestStackSymbols.A);
 						newState=s1;
 						}
-					else if (st==s1 && chrctr=='b') 
+					else if (state==s1 && character=='b') 
 						{
-						newSymbols.add(lastSymb);
+						newSymbols.add(stackSymbol);
 						newSymbols.add(TestStackSymbols.B);
 						newState=s1;
 						}
-					else if (st==s1 && chrctr=='c') 
+					else if (state==s1 && character=='c') 
 					{
-						newSymbols.add(lastSymb);
+						newSymbols.add(stackSymbol);
 						newState=s2;
 					}
-					else if (st==s2 && chrctr=='a' && lastSymb==TestStackSymbols.A) 
-					{
-						newState=s2;
-					}
-					else if (st==s2 && chrctr=='b' && lastSymb==TestStackSymbols.B) 
+					else if (state==s2 && character=='a' && stackSymbol==TestStackSymbols.A) 
 					{
 						newState=s2;
 					}
-					else if (st==s2 && chrctr=='$' && lastSymb==TestStackSymbols.STACKBOTTOM) 
+					else if (state==s2 && character=='b' && stackSymbol==TestStackSymbols.B) 
+					{
+						newState=s2;
+					}
+					else if (state==s2 && character=='$' && stackSymbol==TestStackSymbols.STACKBOTTOM) 
 					{
 						newState=s3;
 					}
