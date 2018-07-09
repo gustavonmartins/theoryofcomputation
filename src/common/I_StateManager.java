@@ -1,15 +1,14 @@
-package fda;
+package common;
 
 import java.util.ArrayList;
-import java.util.function.BiFunction;
 
-public class I_StateBasics implements StateBasics {
+public class I_StateManager implements StateManager {
 	private ArrayList<State> states;
 	private State initialState;
 	private ArrayList<State> acceptedStates;
 	private State currentState;
 	
-	public I_StateBasics() {
+	public I_StateManager() {
 		states=new ArrayList<State>();
 		initialState=null;
 		acceptedStates=new ArrayList<State>(); 

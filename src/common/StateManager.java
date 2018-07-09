@@ -1,8 +1,8 @@
-package fda;
+package common;
 
 import java.util.ArrayList;
 
-public interface StateBasics {
+public interface StateManager {
 	public void addState(State state);
 	public void setInitialState(State state);
 	public void addAcceptedState(State state);

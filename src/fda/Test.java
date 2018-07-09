@@ -2,6 +2,11 @@ package fda;
 
 import java.util.function.BiFunction;
 
+import common.I_State;
+import common.State;
+import fda.DFA;
+import fda.I_DFA;
+
 public class Test {
 	private static DFA machine;
 

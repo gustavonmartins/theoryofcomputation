@@ -3,13 +3,16 @@ package fda;
 import java.util.ArrayList;
 import java.util.function.BiFunction;
 
+import common.I_StateManager;
+import common.State;
+
 public class I_DFA implements DFA {
-	private I_StateBasics stBasics;
+	private I_StateManager stBasics;
 	private BiFunction<State, Character, State> function;
 	
 	
 	public I_DFA() {
-		stBasics=new I_StateBasics();
+		stBasics=new I_StateManager();
 		function=null;
 	}
 	

@@ -1,4 +1,4 @@
-package fda;
+package common;
 
 public class I_State implements State {
 	private String name;
