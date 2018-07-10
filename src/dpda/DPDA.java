@@ -15,11 +15,12 @@ public interface DPDA<StackSymbols extends Enum<StackSymbols>> extends StateMana
 	public void setInitialStackSymbol(StackSymbols symbol);
 	public void addTransition(
 			TriFunction<State, Character, StackSymbols, Tuple<State, ArrayList<StackSymbols>>> function);
+	public void readSymbol(char symbol);
+	public void readAllSymbols(String allSymbols);
+	
 	public StackSymbols peekCurrentStackSymbol();
 	public StackSymbols popCurrentStackSymbol();
 	public void pushStackSymbol(StackSymbols symbol);
-	public void readSymbol(char symbol);
-	public void readAllSymbols(String allSymbols);
 	
 	class Tuple<FST,SND>{
 		FST first;
